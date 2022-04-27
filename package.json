@@ -19,13 +19,13 @@
     "devStartAuth": "nodemon authServer.js",
   
       
-    "test": "mocha './test/test.js'",
+    "test": "mocha",
   
       
     "startMjs": "ts-node --project tsconfig.server.json server.ts",
   
       
-    "coverage": "nyc --reporter=text npm run test"
+    "coverage": "c8 --r html -r text --all  -x 'public/**' -x 'coverage/**' --check-coverage npm test"
   
     },
   
@@ -57,6 +57,9 @@
   
       
     "bcryptjs": "^2.4.3",
+  
+      
+    "c8": "^7.11.2",
   
       
     "chai": "^4.3.6",

@@ -4,7 +4,7 @@ import routes1 from './routes/article.js';
 import routes2 from './routes/user.js';
 import swaggerUI from 'swagger-ui-express';
 import swaggerJsDoc from 'swagger-jsdoc';
-// import cors from 'cors'
+import cors from 'cors';
 const app = express();
 import yaml from 'yamljs'
 const options={
@@ -16,8 +16,8 @@ const options={
             description:" my personal portfolio api access it by clicking on this "
         },
         servers:[{
-            url: "https://fast-garden-04062.herokuapp.com",
-            url:"http://localhost:5000"
+             url: "https://fast-garden-04062.herokuapp.com",
+            // url:"http://localhost:5000"
             
             
         } ],   
@@ -41,6 +41,11 @@ app.use(json());
 app.use('/', routes);
 app.use('/', routes2);
 app.use('/', routes1);
+
+
+app.use(cors());
+app.options('*', cors());
+app.enable('trust proxy');
 
 
 
