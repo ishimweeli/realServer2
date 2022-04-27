@@ -1,0 +1,12 @@
+{
+    "env": {
+        "test": {
+            "plugins": [
+                "istanbul"
+            ]
+        }
+    },
+    "scripts": {
+        "test": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text mocha test/*.js"
+    }
+}

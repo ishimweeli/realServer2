@@ -1,0 +1,47 @@
+# cms open api
+openapi: "3.0.3"
+info:
+  description:
+  version: "1.0.0"
+  title: open api for cms
+  
+  externalDocs:
+  description: more recomandation
+  url: hppt//localhost:5000
+  
+  servers:
+   - url:     http//localhost:5000/login
+  - url: http//localhost:5000/register
+  
+  variables:
+  port:
+  enum:
+  - "5000"
+  default !!str "5000"
+
+
+tags:
+name: users
+
+paths:
+/login:
+/register:
+post:
+      tags:
+      - register
+      summary: "register"
+      description: "This can only be done by the logged in user."
+      operationId: "createUser"
+      
+  /user/login:
+    post:
+      tags:
+      - login
+      summary: "Logs user into the system"
+      description: ""
+      operationId: "loginUser"
+      
+      responses:
+      default:
+          description: "successful operation"
+          
