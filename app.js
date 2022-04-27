@@ -15,14 +15,12 @@ const options={
             version:"1.0.0",
             description:" my personal portfolio api access it by clicking on this "
         },
-        servers: [{
-            url:`${
-              process.env.NODE_ENV === 'development'
-                ? 'http://localhost:5000'
-                : 'https://fast-garden-04062.herokuapp.com/'
-            }`
-          }]
-       
+        servers:[{
+             url: "https://fast-garden-04062.herokuapp.com",
+            // url:"http://localhost:5000"
+            
+            
+        } ],   
     },
     apis:["./routes/*.js"]
 }
