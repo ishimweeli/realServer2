@@ -17,9 +17,12 @@
   
       
     "devStartAuth": "nodemon authServer.js",
-  
+
+   "start:dev": "NODE_ENV=development nodemon server.js",
+    "start:prod": "NODE_ENV=production nodemon server.js",
+
       
-    "test": "mocha",
+    "test": "mocha --exit",
   
       
     "startMjs": "ts-node --project tsconfig.server.json server.ts",
@@ -29,25 +32,7 @@
   
     },
   
-    "nyc": {
-  
-      
-    "all": true,
-  
-      
-    "include": [
-  
-      
-      
-    "test/**.js"
-  
-      
-    ],
-  
-      
-    "exclude": []
-  
-    },
+
   
     "author": "Eliab",
   

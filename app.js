@@ -15,12 +15,14 @@ const options={
             version:"1.0.0",
             description:" my personal portfolio api access it by clicking on this "
         },
-        servers:[{
-             url: "https://fast-garden-04062.herokuapp.com",
-            // url:"http://localhost:5000"
-            
-            
-        } ],   
+        servers: [{
+            url:`${
+              process.env.NODE_ENV === 'development'
+                ? 'http://localhost:5000'
+                : 'https://fast-garden-04062.herokuapp.com/'
+            }`
+          }]
+       
     },
     apis:["./routes/*.js"]
 }
@@ -36,16 +38,16 @@ dotenv.config();
 
 app.use(json());
 
-
+app.use(cors());
+app.options('*', cors());
+app.enable('trust proxy');
 
 app.use('/', routes);
 app.use('/', routes2);
 app.use('/', routes1);
 
 
-app.use(cors());
-app.options('*', cors());
-app.enable('trust proxy');
+
 
 
 
