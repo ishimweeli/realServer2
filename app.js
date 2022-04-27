@@ -20,8 +20,7 @@ const options={
             url:"http://localhost:5000"
             
             
-        } ],
-        
+        } ],   
     },
     apis:["./routes/*.js"]
 }
