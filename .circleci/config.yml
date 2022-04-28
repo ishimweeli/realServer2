@@ -13,7 +13,7 @@ jobs:
       - browser-tools/install-browser-tools
       - run: npm install
       - run:
-          name: "Run Jest and Collect Coverage Reports"
+          name: "Run mocha and Collect Coverage Reports"
           command: mocha --collectCoverage=true
       - store_artifacts:
           path: coverage
