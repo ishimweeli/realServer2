@@ -1,0 +1,46 @@
+version: 2.1
+
+# Define the jobs we want to run for this project
+jobs:
+  build:
+    docker:
+      - image: node:10.10.1
+      - image: cimg/postgres:14.2.0
+    environment:
+        auth:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres  # context / project UI env-var reference
+    -image: redis:latest
+    
+    working_directory: ~/realServer2
+    steps:
+  
+      - checkout
+
+      restore_cache:
+      keys:
+      - v1-dependencies-{{ checksum "package.json"}} 
+       - v1-dependencies-
+
+ -run: npm install
+ -save_cache: 
+       paths:
+       -node_modules
+       key:v1-dependencies-{{ checksum "package.json"}}
+
+       -run: npm run test
+  test:
+    setup_remote_docker:
+    docker_layer_caching: true
+
+    -run:
+    name: Install Docker client
+
+    command: |
+    set -x
+     VER="18.06.3-ce"
+     curl -L -o /tmp/docker -$VER.tzg https://download.docker.com/linux/static/stable/x86_64/docker-$VER.tzg
+     tar -xz -c/tmp -f /tmp/docker -$VER.tzg
+     mv  /tmp/docker/* /usr/bin
+
+     -run: npm ci:docker
