@@ -47,17 +47,16 @@ jobs:
 
             # Run mocha
             - run:
-                name: npm run coverage
-                
-                command: ./node_modules/.bin/nyc ./node_modules/.bin/mocha --recursive --timeout=10000 --exit --reporter mocha-junit-reporter --reporter-options mochaFile=reports/mocha/test-results.xml
+                name: npm test
+                command: npm run coverage
                 when: always
 
-            # # Run eslint
-            # - run:
-            #     name: eslint
-            #     command: |
-            #         ./node_modules/.bin/eslint ./ --format junit --output-file ./reports/eslint/eslint.xml
-            #     when: always
+            # Run eslint
+            - run:
+                name: eslint
+                command: |
+                    ./node_modules/.bin/eslint ./ --format junit --output-file ./reports/eslint/eslint.xml
+                when: always
 
             # Run coverage report for Code Climate
 
@@ -73,7 +72,7 @@ jobs:
             - run:
                 name: code-coverage
                 command: |
-                  
+                    mkdir coverage
                     # nyc report requires that nyc has already been run,
                     # which creates the .nyc_output folder containing necessary data
                     ./node_modules/.bin/nyc report --reporter=text-lcov > coverage/lcov.info
