@@ -6,10 +6,11 @@ jobs:
     docker:
       - image: node:10.10.1
       - image: cimg/postgres:14.2.0
-      - image: cimg/node:17.2-browsers
+        environment:
         auth:
           username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+          password: $DOCKERHUB_PASSWORD 
+      - image: redis:latest      # context / project UI env-var reference
     steps:
       - checkout
       - browser-tools/install-browser-tools
