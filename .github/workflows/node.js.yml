@@ -58,9 +58,9 @@ jobs:
         echo "github.ref: $REF"
         # var PATHS = REF.split('/');
         IFS='/' read -ra PATHS <<< "$REF"
-        # var BRANCH_NAME = PATHS[1] + '_' + PATHS[2];
-        BRANCH_NAME="${PATHS[1]}_${PATHS[2]}"
-        # console.log(BRANCH_NAME); // 'pull_27'
+        # var main = PATHS[1] + '_' + PATHS[2];
+        main="${PATHS[1]}_${PATHS[2]}"
+        # console.log(main); // 'pull_27'
         echo $BRANCH_NAME
         # process.env.BRANCH = 'pull_27';
         echo "BRANCH=$(echo ${BRANCH_NAME})" >> $GITHUB_ENV
@@ -70,7 +70,7 @@ jobs:
       with:
         auth: ${{ secrets.GIST_SECRET }}
         gistID: 7d4c25ef2e97e8de523ef7c1fee26e8e
-        filename: your-repo-name__${{ env.BRANCH }}.json
+        filename: realServer2__${{ env.BRANCH }}.json
         label: Test Coverage
         message: ${{ env.COVERAGE }}
         color: green

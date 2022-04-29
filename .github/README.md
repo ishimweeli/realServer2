@@ -1,0 +1,1 @@
+[![Coverage Badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/<ishimweeli>/<GIST_SECRET>/raw/<realServer2>__heads_main.json)]
