@@ -32,6 +32,6 @@ jobs:
 
       - run:
           name: "Run mocha and Collect Coverage Reports"
-          command: npm run coverage --collectCoverage=true
+          command: npm run test --collectCoverage=true
       - store_artifacts:
           path: coverage
