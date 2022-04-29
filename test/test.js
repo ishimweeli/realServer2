@@ -14,7 +14,7 @@ import server from '../app.js';
 // should();
 chai.use(chaiHttp);
 
-//** 
+//**
 //test the GET all queries route
     mocha.describe("GET/queries", () => {
         it ("it should GET all queries", (done) => {
@@ -28,7 +28,7 @@ chai.use(chaiHttp);
 
 //*
 
-//** 
+//**
 //test the POST all queries route
 mocha.describe("POST/queries", () => {
     it("it should POST  queries", (done) => {
@@ -42,7 +42,7 @@ mocha.describe("POST/queries", () => {
 
 //*
 
-//** 
+//**
 //test the POST articles route
 describe("POST/articles", () => {
     it("it should POST  articles", (done) => {
@@ -171,5 +171,167 @@ describe("POST/register", () => {
     });
     
 
-//*
+
+
+// describe('User workflow tests', () => {
+//     it('should register + login a user, create product and verify 1 in DB', function(done){
+//       this.timeout(30000);
+//   // 1) Register new user
+//   let user = {
+//     first_name: "el",
+//     last_name: "ish",
+//     email: "ishimweeli@gmail.com",
+//     password: 12345678
+//   }
+//   chai.request(server)
+//   .post('/api/user/register')
+//   .send(user)
+//   .end((err, res) => {
+//   // Asserts
+//   expect(res.status).to.be.equal(200);
+//   expect(res.body).to.be.a('object');
+//   //expect(res.body.error).to.be.equal(null);
+//   // 2) Login the user
+//   chai.request(server)
+//   .post('/api/user/login')
+//   .send({
+//     email: "ishimweeli@gmail.com",
+//     password: 12345678
+//   })
+//   .end((err, res) => {
+//   // Asserts
+//   expect(res.body).to.be.a('object');
+//   expect(res.status).to.be.equal(200);
+//   let token = res.body.token;
+//   // 3) Create new blog
+//   let blogs =
+//   {
+//   title: "title blog",
+//   description: "blog description",
+//   img: "image"
+//   };
+//   chai.request(server)
+//   .post('/blogs')
+//   .set({ "auth-token": token })
+//   .send(blogs)
+//   .end((err, res) => {
+//   // Asserts
+//   expect(res.status).to.be.equal(201);
+//   expect(res.body).to.be.a('object');
+//   let savedBlogs = res.body;
+//   expect(savedBlogs.title).to.be.equal(blogs.title);
+//   expect(savedBlogs.description).to.be.equal(blogs.description);
+//   expect(savedBlogs.img).to.be.equal(blogs.img);
+//   // 4) Verify one product in test DB
+//   chai.request(server)
+//       .get('/blogs')
+//       .end((err, res) => {
+//         console.log(res.body);
+//           // Asserts
+//          expect(res.status).to.be.equal(200);
+//           expect(res.body).to.be.a('object');
+//          done();
+//                    });
+//             });
+//     });
+//   });
+//   });
+//   it('should register + login a user, create blog and delete it from DB',function(done){
+//     this.timeout(30000);
+//   // 1) Register new user
+//   let user = {
+//   username: "eliab",
+//   email: "ishimweeliab@gmail.com",
+//   password: "12345678"
+//   }
+//   chai.request(server)
+//   .post('/api/user/register')
+//   .send(user)
+//   .end((err, res) => {
+//   // Asserts
+//   expect(res.status).to.be.equal(200);
+//   expect(res.body).to.be.a('object');
+//   // 2) Login the user
+//   chai.request(server)
+//   .post('/api/user/login')
+//   .send({
+//       "email": "munyaarmel61@gmail.com",
+//       "password": "12345678"
+//   })
+//   .end((err, res) => {
+//       // Asserts
+//       expect(res.status).to.be.equal(200);
+//       let token = res.body.data.token;
+//       // 3) Create new product
+//      let blogs =
+//       {
+//           title: "blog title",
+//           description: "Test blogs Description",
+//           img: 'image title'
+//      };
+//       chai.request(server)
+//   .post('/blogs')
+//   .set({ "auth-token": token })
+//   .send(blogs)
+//   .end((err, res) => {
+//   // Asserts
+//   expect(res.status).to.be.equal(201);
+//   expect(res.body).to.be.a('object');
+//   let savedBlogs = res.body[0];
+//   expect(savedBlogs.title).to.be.equal(blogs.title);
+//   expect(savedBlogs.description).to.be.equal(blogs.description);
+//   expect(savedBlogs.img).to.be.equal(blogs.img);
+//   // 4) Delete product
+//   chai.request(server)
+//       .delete('/blogs/' + savedBlogs._id)
+//       .set({ "auth-token": token })
+//       .end((err, res) => {
+//           // Asserts
+//           expect(res.status).to.be.equal(200);
+//           const actualVal = res.body.message;
+//          expect(actualVal).to.be.equal('the blog was successfully deleted');
+//           done();
+//       });
+//   });
+//   });
+//   });
+//   });
+//   it('should register user with invalid input',function(done){
+//     this.timeout(30000);
+//   //1) Register new user with invalid inputs
+//   let user = {
+//   username: "eliab",
+//   email: "ishimweliab@gmail.com",
+//   password: "1232345678" //Faulty password - Joi/validation should catch this...
+//   }
+//   chai.request(server)
+//   .post('/api/user/register')
+//   .send(user)
+//   .end((err, res) => {
+//   // Asserts
+//   expect(res.status).to.be.equal(400);
+//   expect(res.body).to.be.a('object');
+//   //expect(res.body.error).to.be.equal("\"password\" length must be at least 6 characters long");
+//   done();
+//   });
+//   });
+//   it('should login user with invalid input',function(done){
+//     this.timeout(30000);
+//   // 1) Register new user with invalid inputs
+//   let user = {
+//   email: "ishimweeliab@gmail.com",
+//   password: "123345678"
+//   }
+//   chai.request(server)
+//   .post('/api/user/login')
+//   .send(user)
+//   .end((err, res) => {
+//   // Asserts
+//   expect(res.status).to.be.equal(400);
+//   expect(res.body).to.be.a('object');
+//   //expect(res.body.error).to.be.equal("\"password\" length must be at least 6 characters long");
+//   done();
+//   });
+//   });
+//   });
 
