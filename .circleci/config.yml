@@ -9,7 +9,7 @@ jobs:
           name: install packages
           command: npm install
       - run:
-          name: Run Tests
+          name: Run Test
           command: npm run coverage
 workflows:
   orb-free-workflow:
