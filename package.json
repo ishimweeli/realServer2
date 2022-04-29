@@ -17,7 +17,7 @@
   
       
     "devStartAuth": "nodemon authServer.js",
-
+  
       
     "test": "mocha --exit",
   
@@ -28,8 +28,6 @@
     "coverage": "c8 --r html -r text --all  -x 'public/**' -x 'coverage/**' --check-coverage npm test"
   
     },
-  
-
   
     "author": "Eliab",
   
@@ -48,6 +46,9 @@
   
       
     "chai-http": "^4.3.0",
+  
+      
+    "circleci": "^0.3.3",
   
       
     "cli": "^1.0.1",
