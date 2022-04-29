@@ -28,10 +28,10 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json"}}
 
          
-      - run: npm run test
+      - run: npm run coverage
 
       - run:
           name: "Run mocha and Collect Coverage Reports"
-          command: npm run test --collectCoverage=true
+          command: npm run coverage --collectCoverage=true
       - store_artifacts:
           path: coverage
