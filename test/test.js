@@ -273,18 +273,37 @@ describe('User workflow tests', () => {
     });
     done();
   })
-//   it("should post comments", (done) => {
-//     chai.request(server)
-//       .post("/articles/_id")
-//       .send({ comments: "helloo", })
-//       .end((err, res) => {
-//         expect(res.status).to.be.equal(404)
-//         expect(res.body).to.be.a("object");
-//         expect(res.body.result).to.not.equal(0)
-        
-//       });
-//       done()
-// })
+  it("should post comment", (done) => {
+    chai.request(server)
+      .post("/articles/:articlesId")
+      .send({ comments: "helloo", })
+      .end((err, res) => {
+        expect(res.status).to.be.equal(200)
+        expect(res.body).to.be.a("object");
+        expect(res.body.result).to.not.equal(0)
+
+      });
+    done()
+  })
+  it("should post like", (done) => {
+    chai.request(server)
+      .post("/articles/:articlesId")
+      .send({ likes: "helloo", })
+      .end((err, res) => {
+        expect(res.status).to.be.equal(200)
+        expect(res.body).to.be.a("object");
+        expect(res.body.result).to.not.equal(0)
+
+      });
+    done()
+  })
+  it("it should delete article ", (done) => {
+    chai.request(server)
+      .delete("articles/:articlesId")
+      .end((req, res) => {
+        done()
+      })
+  })
 
 
 })
