@@ -95,15 +95,15 @@
 
 // //*
 
-// //test the DELETE comment articles route
-// describe("DELETE/articles/:title", () => {
-//     it("it should DELETE  1 article", (done) => {
-//         chai.request(server)
-//             .delete("/articles/:title")
-//              done();
+//test the DELETE comment articles route
+describe("DELETE/articles/:title", () => {
+  it("it should DELETE  1 article", (done) => {
+    chai.request(server)
+      .delete("/articles/:title")
+    done();
 
-//             });
-//     });
+  });
+});
     
 
 // //*
@@ -121,15 +121,15 @@
 
 // //*
 
-// //test the update articles  route
-// describe("PUT/articles/:title", () => {
-//     it("it should PUT  1 comment", (done) => {
-//         chai.request(server)
-//             .put("/articles/:title")
-//              done();
+//test the update articles  route
+describe("PUT/articles/:title", () => {
+  it("it should PUT  1 comment", (done) => {
+    chai.request(server)
+      .put("/articles/:title")
+    done();
 
-//             });
-//     });
+    });
+});
     
 
 // //*
@@ -177,7 +177,8 @@ import chai from 'chai';
   const expect = _expect;
 import chaiHttp from 'chai-http';
 import request from 'request'
-  import server from '../app.js';
+import server from '../app.js';
+import token from 'jsonwebtoken';
   use(chaiHttp);
 describe('User workflow tests', () => {
   it('should register ', function (done) {
@@ -223,7 +224,7 @@ describe('User workflow tests', () => {
         done();
       })
   })
-  // 3) Create new blog
+  // // 3) Create new blog
   let articles =
   {
     img: "title-img",
@@ -231,7 +232,7 @@ describe('User workflow tests', () => {
     author: "ishimweeli@gmail.com",
     articleBody: "hello how are you"
   }
-  
+
   // it('should create articles', function (done) {
   //   this.timeout(30000);
   //   chai.request(server)
@@ -247,8 +248,9 @@ describe('User workflow tests', () => {
   //       expect(savedArticles.title).to.be.equal(articles.title);
   //       expect(savedArticles.author).to.be.equal(articles.author);
   //       expect(savedArticles.articleBody).to.be.equal(articles.articleBody);
-  //       done();
+
   //     })
+  //   done();
   // })
 
   it("It should GET all Articles", (done) => {
@@ -256,7 +258,7 @@ describe('User workflow tests', () => {
     .get("/articles")
     .end((err,res)=>{
         expect(res.status).to.be.equal(200);
-        expect(res.body).to.be.a("object");
+      expect(res.body).to.be.a('object');
         expect(res.body.length).not.to.equal(0)
         done();
     })
@@ -305,106 +307,36 @@ describe('User workflow tests', () => {
       })
   })
 
+  it('should create queries', function (done) {
+    this.timeout(30000);
+    chai.request(server)
+      .post('/queries')
+
+      .send({
+        name: "ishimwe eliab",
+        email: "ishimwekkkkeli@gmail.com",
+        message: "hello how are younn"
+      }
+      )
+      .end((err, res) => {
+        // Asserts
+        expect(res.status).to.be.equal(200);
+        expect(res.body).to.be.a('object');
+
+      })
+    done();
+  })
+
+  it("It should GET all queries", (done) => {
+    chai.request(server)
+      .get("/queries")
+      .set({ "auth-token": token })
+
+
+    done();
+  })
+
+
 
 })
 
-
-// // 3) Create new blog
-// let articles =
-// {
-//   img: "title-img",
-//   title: "ishimwe eliab",
-//   author: "ishimweeli@gmail.com",
-//   articleBody: "hello how are you"
-// }
-//     chai.request(server)
-// .post('/articles')
-// .set({ "auth-token": token })
-// .send(articles)
-// .end((err, res) => {
-// // Asserts
-// expect(res.status).to.be.equal(201);
-// expect(res.body).to.be.a('object');
-// let savedArticles = res.body;
-// expect(savedArticles.img).to.be.equal(articles.img);
-//   expect(savedArticles.title).to.be.equal(articles.title);
-//   expect(savedArticles.author).to.be.equal(articles.author);
-// expect(savedArticles.articleBody).to.be.equal(articles.articleBody);
-// // 4) Verify one product in test DB
-//     chai.request(server)
-//     .get('/articles')
-//     .end((err, res) => {
-//       console.log(res.body);
-//         // Asserts
-//        expect(res.status).to.be.equal(200);
-//         expect(res.body).to.be.a('object');
-//        done();
-//                  });
-//           });
-//   });
-// });
-//   });
-  
-// });
-// it('should register + login a user, create blog and delete it from DB',function(done){
-//   this.timeout(30000);
-// // 1) Register new user
-// let user = {
-// username: "armel",
-// email: "munyaarmel61@gmail.com",
-// password: "123456"
-// }
-//     request(server)
-// .post('/api/user/register')
-// .send(user)
-// .end((err, res) => {
-// // Asserts
-// expect(res.status).to.be.equal(200);
-// expect(res.body).to.be.a('object');
-// // 2) Login the user
-//     request(server)
-// .post('/api/user/login')
-// .send({
-//     "email": "munyaarmel61@gmail.com",
-//     "password": "123456"
-// })
-// .end((err, res) => {
-//     // Asserts
-//     expect(res.status).to.be.equal(200);
-//     let token = res.body.data.token;
-//     // 3) Create new product
-//    let blogs =
-//     {
-//         title: "blog title",
-//         description: "Test blogs Description",
-//         img: 'image title'
-//    };
-//     request(server)
-// .post('/blogs')
-// .set({ "auth-token": token })
-// .send(blogs)
-// .end((err, res) => {
-// // Asserts
-// expect(res.status).to.be.equal(201);
-// expect(res.body).to.be.a('object');
-// let savedBlogs = res.body[0];
-// expect(savedBlogs.title).to.be.equal(blogs.title);
-// expect(savedBlogs.description).to.be.equal(blogs.description);
-// expect(savedBlogs.img).to.be.equal(blogs.img);
-// // 4) Delete product
-//     request(server)
-//     .delete('/blogs/' + savedBlogs._id)
-//     .set({ "auth-token": token })
-//     .end((err, res) => {
-//         // Asserts
-//         expect(res.status).to.be.equal(200);
-//         const actualVal = res.body.message;
-//        expect(actualVal).to.be.equal('the blog was successfully deleted');
-//         done();
-//     });
-// });
-// });
-// });
-// });
-
-// });
