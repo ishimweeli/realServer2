@@ -224,6 +224,16 @@ router.post("/login", async (req, res) => {
   
   // ...);
 
+router.get('/users', (req, res) => {
+  user.find({}, (err, data) => {
+    if (err) {
+      return res.json({ Error: err });
+    }
+    return res.json(data);
+  })
+});
+
+
 
 export default router;
    

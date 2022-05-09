@@ -16,8 +16,9 @@ const options={
             description:" my personal portfolio api access it by clicking on this "
         },
         servers:[{
-             url: "https://fast-garden-04062.herokuapp.com",
-            // url:"http://localhost:5000"
+            url: "https://fast-garden-04062.herokuapp.com",
+
+
             
             
         } ],   

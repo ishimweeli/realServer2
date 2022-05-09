@@ -4,7 +4,9 @@ import mongoose from "mongoose"; //import mongoose
 const queriesSchema = new mongoose.Schema({
     name: {type:String, required:true},
     email:String,
-    message:String,
+    message: String,
+    date: { type: String, default: new Date() },
+
     
     comments: [{ text: String, date: {type:String, default: new Date()} }]
 });
