@@ -3,8 +3,6 @@ import articles from '../models/articles.js';
 
 const router = express.Router();
 
-import multer from'multer';
-const upload = multer();
 import auth1 from "../middleware/userAuth.js";
 
 /**
@@ -73,7 +71,7 @@ import auth1 from "../middleware/userAuth.js";
  *       500:
  *         description: Some server error
  */
-router.post("/articles",auth1, upload.none(),(req, res) => {
+router.post("/articles", auth1, (req, res) => {
     //check if the query name already exists in db
     articles.findOne({ title: req.body.title }, (err, data) => {
 
