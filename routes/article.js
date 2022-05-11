@@ -4,6 +4,8 @@ import articles from '../models/articles.js';
 const router = express.Router();
 
 import auth1 from "../middleware/userAuth.js";
+import multer from "multer";
+
 
 /**
  * @swagger
